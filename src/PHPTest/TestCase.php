@@ -41,6 +41,9 @@ class TestCase
 		$this->printStatistics();
 	}
 
+	/**
+	 * Prints the statistics for the TestCase
+	 */
 	private function printStatistics()
 	{
 		printf(
@@ -53,6 +56,11 @@ class TestCase
 		print PHP_EOL;
 	}
 
+	/**
+	 * Asserts that $actual is true
+	 *
+	 * @throws InvalidArgumentException
+	 */
 	public function assertTrue($actual)
 	{
 		$this->stats['run-asserts']++;
@@ -62,6 +70,11 @@ class TestCase
 		$this->stats['pass']++;
 	}
 
+	/**
+	 * Asserts that $actual is false
+	 *
+	 * @throws InvalidArgumentException
+	 */
 	public function assertFalse($actual)
 	{
 		$this->stats['run-asserts']++;
@@ -71,6 +84,11 @@ class TestCase
 		$this->stats['pass']++;
 	}
 
+	/**
+	 * Asserts that $actual is an instance of $expected
+	 *
+	 * @throws InvalidArgumentException
+	 */
 	public function assertInstanceOf($expected, $actual)
 	{
 		$this->stats['run-asserts']++;
@@ -80,6 +98,11 @@ class TestCase
 		$this->stats['pass']++;
 	}
 
+	/**
+	 * Asserts that $actual equals $expected
+	 *
+	 * @throws InvalidArgumentException
+	 */
 	public function assertEquals($expected, $actual)
 	{
 		$this->stats['run-asserts']++;
@@ -89,6 +112,11 @@ class TestCase
 		$this->stats['pass']++;
 	}
 
+	/**
+	 * Asserts that $actual does not equal $expected
+	 *
+	 * @throws InvalidArgumentException
+	 */
 	public function assertNotEquals($value1, $value2)
 	{
 		$this->stats['run-asserts']++;
@@ -98,6 +126,11 @@ class TestCase
 		$this->stats['pass']++;
 	}
 
+	/**
+	 * Asserts that $needle is in $haystack
+	 *
+	 * @throws InvalidArgumentException
+	 */
 	public function assertIn($haystack, $needle)
 	{
 		$this->stats['run-asserts']++;
@@ -107,6 +140,11 @@ class TestCase
 		$this->stats['pass']++;
 	}
 
+	/**
+	 * Asserts that $needle is not in $haystack
+	 *
+	 * @throws InvalidArgumentException
+	 */
 	public function assertNotIn($haystack, $needle)
 	{
 		$this->stats['run-asserts']++;

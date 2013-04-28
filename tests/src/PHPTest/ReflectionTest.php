@@ -18,7 +18,11 @@ class ReflectionTest extends TestCase
 	public function testGetTestMethods()
 	{
 		$expected = array(
+			'heritage',
 			'testGetTestMethods'
 		);
+		$reflection = new Reflection($this);
+		$actual = $reflection->getTestMethods();
+		$this->assertEquals($expected, $actual);
 	}
 }

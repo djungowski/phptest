@@ -6,13 +6,7 @@ require_once 'tests/src/PHPTest/TestCaseTest.php';
 require_once 'tests/src/PHPTest/ReflectionTest.php';
 
 $phpTest = new PHPTest\TestCaseTest();
-$phpTest->assertTruePass();
-$phpTest->assertTrueFail();
-$phpTest->assertInstanceOfPass();
-$phpTest->assertInstanceOfFail();
-//$phpTest->run();
+$phpTest->run();
 
 $phpTest = new PHPTest\ReflectionTest();
-$phpTest->heritage();
-$phpTest->testGetTestMethods();
-//$phpTest->run();
+$phpTest->run();

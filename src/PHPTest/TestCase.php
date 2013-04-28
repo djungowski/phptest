@@ -5,9 +5,9 @@ class TestCase
 {
 	public function run()
 	{
-		$reflection = new \ReflectionClass($this);
-		foreach ($reflection->getMethods() as $method) {
-			//var_dump($method->getDocComment());
+		$reflection = new Reflection($this);
+		foreach ($reflection->getTestMethods() as $method) {
+			$this->$method();
 		}
 	}
 
@@ -28,6 +28,16 @@ class TestCase
 		} else {
 			print 'F';
 			throw new \InvalidArgumentException('Failed asserting that "' . get_class($actual) . '" is of type "' . $expected . '"');
+		}
+	}
+
+	public function assertEquals($expected, $actual)
+	{
+		if ($expected == $actual) {
+			print '.';
+		} else {
+			print 'F';
+			throw new \InvalidArgumentException('Failed asserting that "' . $actual . '" matches "' . $expected . '"');
 		}
 	}
 }

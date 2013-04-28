@@ -10,7 +10,7 @@ class Reflection extends \ReflectionClass
 			$docComment = $method->getDocComment();
 			if ($docComment !== false) {
 				// Check that doc Comment has @Test in it
-				if (preg_match('/\@Test/', $docComment)) {
+				if (preg_match('#@Test#', $docComment)) {
 					$methods[] = $method->name;
 				}
 			}

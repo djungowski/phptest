@@ -48,6 +48,14 @@ class TestCase
 		}
 	}
 
+	public function assertFalse($actual)
+	{
+		$this->stats['run-asserts']++;
+		if ($actual === true) {
+			throw new \InvalidArgumentException('Failed asserting that ' . $actual . ' is false');
+		}
+	}
+
 	public function assertInstanceOf($expected, $actual)
 	{
 		$this->stats['run-asserts']++;

@@ -8,7 +8,7 @@ require_once 'tests/src/PHPTest/TestCaseTest.php';
 require_once 'tests/src/PHPTest/ReflectionTest.php';
 
 $phpTest = new PHPTest\AutoloadTest();
-$phpTest->run();
+//$phpTest->run();
 
 $phpTest = new PHPTest\TestCaseTest();
 $phpTest->run();

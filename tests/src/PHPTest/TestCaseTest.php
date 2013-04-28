@@ -29,6 +29,29 @@ class TestCaseTest extends TestCase
 	/**
 	 * @Test
 	 */
+	public function assertFalsePass()
+	{
+		$this->assertFalse(false);
+	}
+
+	/**
+	 * @Test 
+	 */
+	public function assertFalseFail()
+	{
+		$exception = false;
+		try {
+			$this->assertFalse(true);
+		} catch (\Exception $e) {
+			$exception = true;
+		}
+		// Use different comparison method in order to ensure that the error is not in assertTrue
+		$this->assertEquals($exception, true);
+	}
+
+	/**
+	 * @Test
+	 */
 	public function assertEqualsPass()
 	{
 		$expected = 'foo';

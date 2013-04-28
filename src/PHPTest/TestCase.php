@@ -22,7 +22,6 @@ class TestCase
 				if ($this->stats['run-asserts'] == $runBefore) {
 					throw new \InvalidArgumentException('Test "' . $method . '" has no assertions');
 				}
-				$this->stats['pass']++;
 			} catch (\InvalidArgumentException $e) {
 				print 'F';
 				$this->stats['fail']++;
@@ -30,8 +29,8 @@ class TestCase
 			}
 		}
 		print PHP_EOL;
-		sprintf(
-			'Tests methods / asserts / passed / fail: %d / %d / %d / %d',
+		printf(
+			'Tests: %d, Assertions: %d, Failures: %d',
 			$this->stats['run-methods'],
 			$this->stats['run-asserts'],
 			$this->stats['pass'],
@@ -46,6 +45,7 @@ class TestCase
 		if ($actual !== true) {
 			throw new \InvalidArgumentException('Failed asserting that ' . $actual . ' is true');
 		}
+		$this->stats['pass']++;
 	}
 
 	public function assertFalse($actual)
@@ -54,6 +54,7 @@ class TestCase
 		if ($actual === true) {
 			throw new \InvalidArgumentException('Failed asserting that ' . $actual . ' is false');
 		}
+		$this->stats['pass']++;
 	}
 
 	public function assertInstanceOf($expected, $actual)
@@ -62,6 +63,7 @@ class TestCase
 		if (!($actual instanceof $expected)) {
 			throw new \InvalidArgumentException('Failed asserting that "' . get_class($actual) . '" is of type "' . $expected . '"');
 		}
+		$this->stats['pass']++;
 	}
 
 	public function assertEquals($expected, $actual)
@@ -70,6 +72,7 @@ class TestCase
 		if ($expected != $actual) {
 			throw new \InvalidArgumentException('Failed asserting that "' . $actual . '" equals "' . $expected . '"');
 		}
+		$this->stats['pass']++;
 	}
 
 	public function assertNotEquals($value1, $value2)
@@ -78,6 +81,7 @@ class TestCase
 		if ($value1 == $value2) {
 			throw new \InvalidArgumentException('Failed asserting that "' . $value2 . '" does not equal "' . $value1 . '"');
 		}
+		$this->stats['pass']++;
 	}
 
 	public function assertIn($haystack, $needle)
@@ -86,6 +90,7 @@ class TestCase
 		if (!in_array($needle, $haystack)) {
 			throw new \InvalidArgumentException('Failed asserting that "' . $needle . '" is in "' . serialize($haystack) . '"');
 		}
+		$this->stats['pass']++;
 	}
 
 	public function assertNotIn($haystack, $needle)
@@ -94,5 +99,6 @@ class TestCase
 		if (in_array($needle, $haystack)) {
 			throw new \InvalidArgumentException('Failed asserting that "' . $needle . '" is not in "' . serialize($haystack) . '"');
 		}
+		$this->stats['pass']++;
 	}
 }

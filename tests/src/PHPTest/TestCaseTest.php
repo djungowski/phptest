@@ -22,7 +22,8 @@ class TestCaseTest extends TestCase
 		} catch (\Exception $e) {
 			$exception = true;
 		}
-		$this->assertTrue($exception);
+		// Use different comparison method in order to ensure that the error is not in assertTrue
+		$this->assertEquals($exception, true);
 	}
 
 	/**

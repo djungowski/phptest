@@ -3,9 +3,12 @@ namespace PHPTest;
 
 class TestCase
 {
-	private function assert($expected, $actual)
+	public function run()
 	{
-
+		$reflection = new \ReflectionClass($this);
+		foreach ($reflection->getMethods() as $method) {
+			//var_dump($method->getDocComment());
+		}
 	}
 
 	public function assertTrue($actual)
@@ -15,6 +18,16 @@ class TestCase
 		} else {
 			print 'F';
 			throw new \InvalidArgumentException('Failed asserting that ' . $actual . ' is true');
+		}
+	}
+
+	public function assertInstanceOf($expected, $actual)
+	{
+		if ($actual instanceof $expected) {
+			print '.';
+		} else {
+			print 'F';
+			throw new \InvalidArgumentException('Failed asserting that "' . get_class($actual) . '" is of type "' . $expected . '"');
 		}
 	}
 }

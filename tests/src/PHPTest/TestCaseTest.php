@@ -11,10 +11,33 @@ class TestCaseTest extends TestCase
 		$this->assertTrue(true);
 	}
 
-	public function assertTrueFails()
+	/**
+	 * @Test 
+	 */
+	public function assertTrueFail()
 	{
 		try {
 			$this->assertTrue(false);
+		} catch (\Exception $e) {
+			$this->assertTrue($e instanceof \Exception);
+		}
+	}
+
+	/**
+	 * @Test
+	 */
+	public function assertInstanceOfPass()
+	{
+		$this->assertInstanceOf('PHPTest\TestCase', $this);
+	}
+
+	/**
+	 * @Test
+	 */
+	public function assertInstanceOfFail()
+	{
+		try {
+			$this->assertInstanceOf('Foo\Bar', $this);
 		} catch (\Exception $e) {
 			$this->assertTrue($e instanceof \Exception);
 		}

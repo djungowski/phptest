@@ -56,6 +56,16 @@ class TestCase
 		print PHP_EOL;
 	}
 
+	private function assert($trueCondition, $errorMessage)
+	{
+		$this->stats['run-asserts']++;
+		if (!$trueCondition) {
+			$this->stats['fail']++;
+			throw new \InvalidArgumentException($errorMessage);
+		}
+		$this->stats['pass']++;
+	}
+
 	/**
 	 * Asserts that $actual is true
 	 *
@@ -63,11 +73,9 @@ class TestCase
 	 */
 	public function assertTrue($actual)
 	{
-		$this->stats['run-asserts']++;
-		if ($actual !== true) {
-			throw new \InvalidArgumentException('Failed asserting that ' . $actual . ' is true');
-		}
-		$this->stats['pass']++;
+		$trueCondition = ($actual === true);
+		$errorMessage = sprintf('Failed asserting that %b is true', $actual);
+		$this->assert($trueCondition, $errorMessage);
 	}
 
 	/**

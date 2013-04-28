@@ -15,6 +15,7 @@ class TestCase
 				throw $e;
 			}
 		}
+		print PHP_EOL;
 	}
 
 	public function assertTrue($actual)

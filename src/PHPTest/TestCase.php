@@ -85,11 +85,9 @@ class TestCase
 	 */
 	public function assertFalse($actual)
 	{
-		$this->stats['run-asserts']++;
-		if ($actual === true) {
-			throw new \InvalidArgumentException('Failed asserting that ' . $actual . ' is false');
-		}
-		$this->stats['pass']++;
+		$trueCondition = ($actual === false);
+		$errorMessage = sprintf('Failed asserting that %b is true', $actual);
+		$this->assert($trueCondition, $errorMessage);
 	}
 
 	/**

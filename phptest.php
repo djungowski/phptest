@@ -1,14 +1,15 @@
 <?php
 // @TODO: Replace with autolading
 require_once 'src/PHPTest/Autoload.php';
-require_once 'src/PHPTest/TestCase.php';
-require_once 'src/PHPTest/Reflection.php';
+$path = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'src';
+$autoload = new PHPTest\Autoload($path);
+
 require_once 'tests/src/PHPTest/AutoloadTest.php';
 require_once 'tests/src/PHPTest/TestCaseTest.php';
 require_once 'tests/src/PHPTest/ReflectionTest.php';
 
 $phpTest = new PHPTest\AutoloadTest();
-//$phpTest->run();
+$phpTest->run();
 
 $phpTest = new PHPTest\TestCaseTest();
 $phpTest->run();

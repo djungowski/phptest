@@ -12,7 +12,7 @@ $phpTest->assertInstanceOfPass();
 $phpTest->assertInstanceOfFail();
 //$phpTest->run();
 
-$phpTest = new PHPTest\ReflectionTest();
-$phpTest->heritage();
-$phpTest->testGetTestMethods();
+// $phpTest = new PHPTest\ReflectionTest();
+// $phpTest->heritage();
+// $phpTest->testGetTestMethods();
 //$phpTest->run();

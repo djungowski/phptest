@@ -6,4 +6,3 @@ require_once 'tests/src/PHPTest/TestCaseTest.php';
 $phpTest = new PHPTest\TestCaseTest();
 $phpTest->assertTruePass();
 $phpTest->assertTrueFails();
-$phpTest->assertInArrayPass();

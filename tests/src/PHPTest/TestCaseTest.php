@@ -100,4 +100,40 @@ class TestCaseTest extends TestCase
 		}
 		$this->assertTrue($exception);
 	}
+
+	/**
+	 * @Test
+	 */
+	public function assertInPass()
+	{
+		$needle = 'findme';
+		$haystack = array(
+			'first',
+			'second',
+			'findme',
+			'last'
+		);
+		$this->assertIn($haystack, $needle);
+	}
+
+	/**
+	 * @Test
+	 */
+	public function assertInFail()
+	{
+		$needle = 'findme1';
+		$haystack = array(
+			'first',
+			'second',
+			'findme',
+			'last'
+		);
+		$exception = false;
+		try {
+			$this->assertIn($haystack, $needle);
+		} catch(\Exception $e) {
+			$exception = true;
+		}
+		$this->assertTrue($exception);
+	}
 }

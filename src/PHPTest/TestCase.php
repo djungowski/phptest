@@ -49,10 +49,17 @@ class TestCase
 		}
 	}
 
-	public function assertNotEquals($expected, $actual)
+	public function assertNotEquals($value1, $value2)
 	{
-		if ($expected == $actual) {
-			throw new \InvalidArgumentException('Failed asserting that "' . $actual . '" does not equal "' . $expected . '"');
+		if ($value1 == $value2) {
+			throw new \InvalidArgumentException('Failed asserting that "' . $value2 . '" does not equal "' . $value1 . '"');
+		}
+	}
+
+	public function assertIn($haystack, $needle)
+	{
+		if (!in_array($needle, $haystack)) {
+			throw new \InvalidArgumentException('Failed asserting that "' . $needle . '" is in "' . serialize($haystack) . '"');
 		}
 	}
 }

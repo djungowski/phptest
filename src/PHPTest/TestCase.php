@@ -3,6 +3,11 @@ namespace PHPTest;
 
 class TestCase
 {
+	/**
+	 * TestCase statistics
+	 * 
+	 * @var Array
+	 */
 	private $stats = array(
 		'run-methods' => 0,
 		'run-asserts' => 0,
@@ -10,6 +15,10 @@ class TestCase
 		'fail' => 0
 	);
 
+	/**
+	 * Run the whole TestCase and print the statistics afterwards
+	 *
+	 */
 	public function run()
 	{
 		$reflection = new Reflection($this);
@@ -29,6 +38,11 @@ class TestCase
 			}
 		}
 		print PHP_EOL;
+		$this->printStatistics();
+	}
+
+	private function printStatistics()
+	{
 		printf(
 			'Tests: %d, Assertions: %d, Failures: %d',
 			$this->stats['run-methods'],

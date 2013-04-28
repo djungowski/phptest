@@ -56,6 +56,32 @@ class TestCaseTest extends TestCase
 	/**
 	 * @Test
 	 */
+	public function assertNotEqualsPass()
+	{
+		$expected = 'foo';
+		$actual = 'bar';
+		$this->assertNotEquals($expected, $actual);
+	}
+
+	/**
+	 * @Test
+	 */
+	public function assertNotEqualsFail()
+	{
+		$expected = 'foo';
+		$actual = 'foo';
+		$exception = false;
+		try {
+			$this->assertNotEquals($expected, $actual);
+		} catch(\Exception $e) {
+			$exception = true;
+		}
+		$this->assertTrue($exception);
+	}
+
+	/**
+	 * @Test
+	 */
 	public function assertInstanceOfPass()
 	{
 		$this->assertInstanceOf('PHPTest\TestCase', $this);

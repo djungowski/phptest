@@ -45,7 +45,14 @@ class TestCase
 	public function assertEquals($expected, $actual)
 	{
 		if ($expected != $actual) {
-			throw new \InvalidArgumentException('Failed asserting that "' . $actual . '" matches "' . $expected . '"');
+			throw new \InvalidArgumentException('Failed asserting that "' . $actual . '" equals "' . $expected . '"');
+		}
+	}
+
+	public function assertNotEquals($expected, $actual)
+	{
+		if ($expected == $actual) {
+			throw new \InvalidArgumentException('Failed asserting that "' . $actual . '" does not equal "' . $expected . '"');
 		}
 	}
 }

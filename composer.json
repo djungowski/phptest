@@ -1,0 +1,20 @@
+{
+    "name": "zoidcat/phptest",
+    "description": "PHP unit testing framework",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Dominik Jungowski",
+            "email": "email@example.com"
+        },
+        {
+            "name": "David Henning",
+            "email": "david@webcodr.de"
+        }
+    ],
+    "autoload": {
+        "psr-0":         {
+            "PHPTest": "src"
+        }
+    }
+}

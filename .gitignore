@@ -1,0 +1,10 @@
+/.idea/*
+/*.sublime-workspace
+/*.sublime-project
+
+/.DS_Store
+
+/composer.phar
+/phpunit.phar
+
+/vendor/*

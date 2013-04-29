@@ -11,3 +11,6 @@ $phpTest->run();
 
 $phpTest = new PHPTest\Test\Assertion\ExceptionTest();
 $phpTest->run();
+
+$phpTest = new PHPTest\Test\DirectoryTest();
+$phpTest->run();

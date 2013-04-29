@@ -15,7 +15,8 @@ class AutoloadTest extends TestCase
 
 		$testClass = 'PHPTest\Autoload\Stub';
 		$before = get_declared_classes();
-		// First: Check that the class is not already defined
+		// First: Check that the class is not already defined. Since class_exists() autoloads the class
+		// we can't use it for checking here
 		$this->assertNotIn($before, $testClass);
 
 		$autoloader = new Autoload($path);

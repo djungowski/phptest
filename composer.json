@@ -14,7 +14,8 @@
     ],
     "autoload": {
         "psr-0":         {
-            "PHPTest": "src"
+            "PHPTest": "src",
+            "PHPTest\\Test": "tests"
         }
     }
 }

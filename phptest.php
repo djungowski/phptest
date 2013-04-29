@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 // @TODO: Replace with autolading
 require_once 'src/PHPTest/Autoload.php';

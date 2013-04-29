@@ -1,6 +1,8 @@
 <?php
 namespace PHPTest;
 
+use PHPTest\Assertion;
+
 class TestCase
 {
 	/**
@@ -29,9 +31,9 @@ class TestCase
 				print '.';
 				$this->$method();
 				if ($this->stats['run-asserts'] == $runBefore) {
-					throw new \InvalidArgumentException('Test "' . $method . '" has no assertions');
+					throw new Assertion\Exception('Test "' . $method . '" has no assertions');
 				}
-			} catch (\InvalidArgumentException $e) {
+			} catch (Assertion\Exception $e) {
 				print 'F';
 				$this->stats['fail']++;
 				throw $e;
@@ -61,7 +63,7 @@ class TestCase
 		$this->stats['run-asserts']++;
 		if (!$trueCondition) {
 			$this->stats['fail']++;
-			throw new \InvalidArgumentException($errorMessage);
+			throw new Assertion\Exception($errorMessage);
 		}
 		$this->stats['pass']++;
 	}
@@ -99,7 +101,7 @@ class TestCase
 	{
 		$this->stats['run-asserts']++;
 		if (!($actual instanceof $expected)) {
-			throw new \InvalidArgumentException('Failed asserting that "' . get_class($actual) . '" is of type "' . $expected . '"');
+			throw new Assertion\Exception('Failed asserting that "' . get_class($actual) . '" is of type "' . $expected . '"');
 		}
 		$this->stats['pass']++;
 	}
@@ -113,7 +115,7 @@ class TestCase
 	{
 		$this->stats['run-asserts']++;
 		if ($expected != $actual) {
-			throw new \InvalidArgumentException('Failed asserting that "' . $actual . '" equals "' . $expected . '"');
+			throw new Assertion\Exception('Failed asserting that "' . $actual . '" equals "' . $expected . '"');
 		}
 		$this->stats['pass']++;
 	}
@@ -127,7 +129,7 @@ class TestCase
 	{
 		$this->stats['run-asserts']++;
 		if ($value1 == $value2) {
-			throw new \InvalidArgumentException('Failed asserting that "' . $value2 . '" does not equal "' . $value1 . '"');
+			throw new Assertion\Exception('Failed asserting that "' . $value2 . '" does not equal "' . $value1 . '"');
 		}
 		$this->stats['pass']++;
 	}
@@ -141,7 +143,7 @@ class TestCase
 	{
 		$this->stats['run-asserts']++;
 		if (!in_array($needle, $haystack)) {
-			throw new \InvalidArgumentException('Failed asserting that "' . $needle . '" is in "' . serialize($haystack) . '"');
+			throw new Assertion\Exception('Failed asserting that "' . $needle . '" is in "' . serialize($haystack) . '"');
 		}
 		$this->stats['pass']++;
 	}
@@ -155,7 +157,7 @@ class TestCase
 	{
 		$this->stats['run-asserts']++;
 		if (in_array($needle, $haystack)) {
-			throw new \InvalidArgumentException('Failed asserting that "' . $needle . '" is not in "' . serialize($haystack) . '"');
+			throw new Assertion\Exception('Failed asserting that "' . $needle . '" is not in "' . serialize($haystack) . '"');
 		}
 		$this->stats['pass']++;
 	}

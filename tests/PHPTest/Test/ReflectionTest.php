@@ -1,5 +1,9 @@
 <?php
-namespace PHPTest;
+
+namespace PHPTest\Test;
+
+use PHPTest\TestCase;
+use PHPTest\Reflection;
 
 class ReflectionTest extends TestCase
 {

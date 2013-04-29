@@ -1,23 +1,13 @@
 #!/usr/bin/php
 <?php
-// @TODO: Replace with autolading
-require_once 'src/PHPTest/Autoload.php';
-$path = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'src';
-$autoload = new PHPTest\Autoload($path);
 
-require_once 'tests/src/PHPTest/AutoloadTest.php';
-require_once 'tests/src/PHPTest/TestCaseTest.php';
-require_once 'tests/src/PHPTest/ReflectionTest.php';
-require_once 'tests/src/PHPTest/Assertion/ExceptionTest.php';
+require_once 'vendor/autoload.php';
 
-$phpTest = new PHPTest\AutoloadTest();
+$phpTest = new PHPTest\Test\TestCaseTest();
 $phpTest->run();
 
-$phpTest = new PHPTest\TestCaseTest();
+$phpTest = new PHPTest\Test\ReflectionTest();
 $phpTest->run();
 
-$phpTest = new PHPTest\ReflectionTest();
-$phpTest->run();
-
-$phpTest = new PHPTest\Assertion\ExceptionTest();
+$phpTest = new PHPTest\Test\Assertion\ExceptionTest();
 $phpTest->run();

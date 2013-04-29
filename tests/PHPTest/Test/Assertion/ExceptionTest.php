@@ -1,5 +1,6 @@
 <?php
-namespace PHPTest\Assertion;
+
+namespace PHPTest\Test\Assertion;
 
 use PHPTest\TestCase;
 
@@ -10,7 +11,7 @@ class ExceptionTest extends TestCase
 	 */
 	public function heritage()
 	{
-		$actual = new Exception;
+		$actual = new \Exception;
 		$this->assertInstanceOf('Exception', $actual);
 	}
 }

@@ -4,7 +4,8 @@ phptest
 A PHP Unit Testing framework supporting Namespaces, Composer, PHAR
 
 
-Setup
+## Setup
 =====
-
-	./setup.sh
+~~~ bash
+$ ./setup.sh
+~~~

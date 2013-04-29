@@ -19,6 +19,12 @@ class Reflection extends \ReflectionClass
 		return $methods;
 	}
 
+	/**
+	 * Tell if a given method is a test
+	 * A method is a test if @Test is in the docblock comments
+	 *
+	 * @return Boolean
+	 */
 	private function isTestMethod(\ReflectionMethod $method)
 	{
 		$docComment = $method->getDocComment();

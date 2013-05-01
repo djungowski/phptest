@@ -26,6 +26,7 @@ class Run extends Command
         $fails = 0;
 
         $tests = array(
+            new \PHPTest\Test\EmptyTestExceptionTest(),
             new \PHPTest\Test\TestCaseTest(),
             new \PHPTest\Test\ReflectionTest(),
             new \PHPTest\Test\Assertion\ExceptionTest(),

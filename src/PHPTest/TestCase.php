@@ -74,6 +74,11 @@ class TestCase
 		return $callerString;
 	}
 
+	/**
+	 * Run an assertion and fail if it's broken
+	 *
+	 * @throws Assertion\Exception
+	 */
 	private function assert($trueCondition, $errorMessage)
 	{
 		$this->stats['run-asserts']++;

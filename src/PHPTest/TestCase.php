@@ -203,6 +203,9 @@ class TestCase
 		$this->assert($condition, $errorMessage);
 	}
 
+	/**
+	 * Asserts that $expected and $actual are not the same
+	 */
 	public function assertNotSame($expected, $actual)
 	{
 		$condition = ($expected !== $actual);

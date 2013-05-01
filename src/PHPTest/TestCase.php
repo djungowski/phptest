@@ -86,10 +86,10 @@ class TestCase
 	 *
 	 * @throws Assertion\Exception
 	 */
-	private function assert($trueCondition, $errorMessage)
+	private function assert($condition, $errorMessage)
 	{
 		$this->stats['run-asserts']++;
-		$assertion = assert($trueCondition);
+		$assertion = assert($condition);
 		if ($assertion != true) {
 			$callingMethod = $this->getCallingTestMethod();
 			$errorMessage = sprintf(
@@ -112,9 +112,9 @@ class TestCase
 	 */
 	public function assertTrue($actual)
 	{
-		$trueCondition = ($actual === true);
+		$condition = ($actual === true);
 		$errorMessage = sprintf('Failed asserting that %b is true', $actual);
-		$this->assert($trueCondition, $errorMessage);
+		$this->assert($condition, $errorMessage);
 	}
 
 	/**
@@ -124,9 +124,9 @@ class TestCase
 	 */
 	public function assertFalse($actual)
 	{
-		$trueCondition = ($actual === false);
+		$condition = ($actual === false);
 		$errorMessage = sprintf('Failed asserting that %b is true', $actual);
-		$this->assert($trueCondition, $errorMessage);
+		$this->assert($condition, $errorMessage);
 	}
 
 	/**
@@ -136,9 +136,9 @@ class TestCase
 	 */
 	public function assertInstanceOf($expected, $actual)
 	{
-		$trueCondition = ($actual instanceof $expected);
+		$condition = ($actual instanceof $expected);
 		$errorMessage = sprintf('Failed asserting that "%s" is of type "%s"', get_class($actual), $expected);
-		$this->assert($trueCondition, $errorMessage);
+		$this->assert($condition, $errorMessage);
 	}
 
 	/**
@@ -148,11 +148,9 @@ class TestCase
 	 */
 	public function assertEquals($expected, $actual)
 	{
-		$this->stats['run-asserts']++;
-		if ($expected != $actual) {
-			throw new Assertion\Exception('Failed asserting that "' . $actual . '" equals "' . $expected . '"');
-		}
-		$this->stats['pass']++;
+		$condition = ($expected == $actual);
+		$errorMessage = sprintf('Failed asserting that "%s" equals "%s"', $actual, $expected);
+		$this->assert($condition, $errorMessage);
 	}
 
 	/**

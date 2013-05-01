@@ -22,7 +22,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertTrue(false);
-		} catch (\Exception $e) {
+		} catch (Assertion\Exception $e) {
 			$exception = true;
 		}
 		// Use different comparison method in order to ensure that the error is not in assertTrue
@@ -45,7 +45,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertFalse(true);
-		} catch (\Exception $e) {
+		} catch (Assertion\Exception $e) {
 			$exception = true;
 		}
 		// Use different comparison method in order to ensure that the error is not in assertTrue
@@ -73,7 +73,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertEquals($expected, $actual);
-		} catch(\Exception $e) {
+		} catch(Assertion\Exception $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);
@@ -99,7 +99,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertNotEquals($expected, $actual);
-		} catch(\Exception $e) {
+		} catch(Assertion\Exception $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);
@@ -121,7 +121,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertInstanceOf('Foo\Bar', $this);
-		} catch (\Exception $e) {
+		} catch (Assertion\Exception $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);
@@ -157,7 +157,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertIn($haystack, $needle);
-		} catch(\Exception $e) {
+		} catch(Assertion\Exception $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);
@@ -193,7 +193,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertNotIn($haystack, $needle);
-		} catch(\Exception $e) {
+		} catch(Assertion\Exception $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);

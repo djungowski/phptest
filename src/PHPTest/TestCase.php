@@ -70,6 +70,7 @@ class TestCase
 		$this->stats['run-asserts']++;
 		if (!$trueCondition) {
 			$this->stats['fail']++;
+			print($errorMessage);
 			throw new Assertion\Exception($errorMessage);
 		}
 		$this->stats['pass']++;

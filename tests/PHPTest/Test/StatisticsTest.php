@@ -242,7 +242,7 @@ class StatisticsTest extends TestCase
 	/**
 	 * @Test
 	 */
-	public function increaseWithObject()
+	public function increase()
 	{
 		$stats1 = new Statistics();
 		$stats1->increaseAsserts(6);
@@ -260,5 +260,15 @@ class StatisticsTest extends TestCase
 	    );
 	    $actual = $stats2->get();
 	    $this->assertEquals($expected, $actual);
+	}
+
+	/**
+	 * @Test
+	 */
+	public function hasFailsFalse()
+	{
+		$stats = new Statistics();
+		$actual = $stats->hasFails();
+		$this->assertFalse($actual);
 	}
 }

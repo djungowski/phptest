@@ -104,16 +104,15 @@ class Run extends Command
     {
         $output->writeln('Total:');
 
-        $stats = $this->_stats->get();
         $info = sprintf(
             'Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
-            $stats['methods'],
-            $stats['asserts'],
-            $stats['passed'],
-            $stats['fails']
+            $this->_stats->get('methods'),
+            $this->_stats->get('asserts'),
+            $this->_stats->get('passed'),
+            $this->_stats->get('fails')
         );
 
-        if ($stats['fails'] > 0) {
+        if ($this->_stats->get('fails') > 0) {
             $output->writeln("<error>{$info}</error>");
         } else {
             $output->writeln("<bg=green>{$info}</bg=green>");

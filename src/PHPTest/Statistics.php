@@ -93,4 +93,9 @@ class Statistics
 			$this->increaseValue($key, $increment->get($key));
 		}
 	}
+
+	public function hasFails()
+	{
+		return false;
+	}
 }

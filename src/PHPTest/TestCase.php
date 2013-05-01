@@ -202,4 +202,15 @@ class TestCase
 		}
 		$this->assert($condition, $errorMessage);
 	}
+
+	public function assertNotSame($expected, $actual)
+	{
+		$condition = ($expected !== $actual);
+		if (is_object($expected)) {
+			$errorMessage = sprintf('Failed asserting that 2 objects are not the same', $expected, $actual);
+		} else {
+			$errorMessage = sprintf('Failed asserting that "%s" and "%s" are not the same', $expected, $actual);
+		}
+		$this->assert($condition, $errorMessage);	
+	}
 }

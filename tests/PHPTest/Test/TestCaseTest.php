@@ -228,4 +228,32 @@ class TestCaseTest extends TestCase
 		}
 		$this->assertTrue($exception);
 	}
+
+	/**
+	 * @Test
+	 */
+	public function assertNotSamePass()
+	{
+		$someClass = new \StdClass;
+		$someClass->someProperty = time() + rand(1000, 9999);
+		$someOtherClass = clone $someClass;
+		$this->assertNotSame($someClass, $someOtherClass);
+	}
+
+	/**
+	 * @Test
+	 */
+	public function assertNotSameFail()
+	{
+		$someClass = new \StdClass;
+		$someClass->someProperty = time() + rand(1000, 9999);
+		$someOtherClass = $someClass;
+		$exception = false;
+		try {
+			$this->assertNotSame($someClass, $someOtherClass);	
+		} catch (AE $e) {
+			$exception = true;
+		}
+		$this->assertTrue($exception);
+	}
 }

@@ -28,19 +28,15 @@ class TestCase
 			$runBefore = $this->stats['run-asserts'];
 			$this->stats['run-methods']++;
 			try {
-				print '.';
 				$this->$method();
 				if ($this->stats['run-asserts'] == $runBefore) {
 					throw new Assertion\Exception('Test "' . $method . '" has no assertions');
 				}
 			} catch (Assertion\Exception $e) {
-				print 'F';
 				$this->stats['fail']++;
 				throw $e;
 			}
 		}
-		print PHP_EOL;
-		$this->printStatistics();
 	}
 
 

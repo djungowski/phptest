@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use PHPTest\TestCase;
 
 class Run extends Command
 {
@@ -26,6 +27,10 @@ class Run extends Command
         $this->setAssertionOptions();
     }
 
+    /**
+     * Sets the options for the assert() function
+     * which is used for running the assertions
+     */
     private function setAssertionOptions()
     {
         assert_options(ASSERT_ACTIVE, 1);
@@ -48,28 +53,8 @@ class Run extends Command
         $output->writeln('');
 
         foreach ($tests as $test) {
-            $test->run();
-            $stats = $test->getStatistics();
-            $this->_stats['asserts'] += $stats['asserts'];
-            $this->_stats['methods'] += $stats['methods'];
-            $this->_stats['passed'] += $stats['passed'];
-            $this->_stats['fails'] += $stats['fails'];
-
-            $info = sprintf(
-                get_class($test) . ' - Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
-                $stats['methods'],
-                $stats['asserts'],
-                $stats['passed'],
-                $stats['fails']
-            );
-
-            if ($stats['fails'] > 0) {
-                $output->writeln("<error>{$info}</error>");
-            } else {
-                $output->writeln("<bg=green>{$info}</bg=green>");
-            }
-
-            $output->writeln('');
+            $testStats = $this->runTest($test);
+            $this->printTestStats($output, get_class($test), $testStats);
         }
 
         $output->writeln('');
@@ -91,5 +76,36 @@ class Run extends Command
         } else {
             $output->writeln("<bg=green>{$info}</bg=green>");
         }
+    }
+
+    private function runTest(TestCase $test)
+    {
+        $test->run();
+        $stats = $test->getStatistics();
+        $this->_stats['asserts'] += $stats['asserts'];
+        $this->_stats['methods'] += $stats['methods'];
+        $this->_stats['passed'] += $stats['passed'];
+        $this->_stats['fails'] += $stats['fails'];
+        return $stats;
+    }
+
+    private function printTestStats(OutputInterface $output, $testCase, Array $testStats)
+    {
+        $info = sprintf(
+            '%s - Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
+            $testCase,
+            $testStats['methods'],
+            $testStats['asserts'],
+            $testStats['passed'],
+            $testStats['fails']
+        );
+
+        if ($testStats['fails'] > 0) {
+            $output->writeln("<error>{$info}</error>");
+        } else {
+            $output->writeln("<bg=green>{$info}</bg=green>");
+        }
+
+        $output->writeln('');
     }
 }

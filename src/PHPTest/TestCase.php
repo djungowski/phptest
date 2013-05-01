@@ -30,7 +30,7 @@ class TestCase
 			try {
 				$this->$method();
 				if ($this->stats['run-asserts'] == $runBefore) {
-					throw new EmptyTestException('Test "' . $method . '" has no assertions');
+					throw new Assertion\NoAssertionsException('Test "' . $method . '" has no assertions');
 				}
 			} catch (Assertion\Exception $e) {
 				$this->stats['fail']++;

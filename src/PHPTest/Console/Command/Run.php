@@ -78,17 +78,17 @@ class Run extends Command
      */
     private function printTestStats(OutputInterface $output, TestCase $testCase)
     {
-        $testStats = $testCase->getStatistics()->get();
+        $testStats = $testCase->getStatistics();
         $info = sprintf(
             '%s - Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
             get_class($testCase),
-            $testStats['methods'],
-            $testStats['asserts'],
-            $testStats['passed'],
-            $testStats['fails']
+            $testStats->get('methods'),
+            $testStats->get('asserts'),
+            $testStats->get('passed'),
+            $testStats->get('fails')
         );
 
-        if ($testStats['fails'] > 0) {
+        if ($testStats->get('fails') > 0) {
             $output->writeln("<error>{$info}</error>");
         } else {
             $output->writeln("<bg=green>{$info}</bg=green>");

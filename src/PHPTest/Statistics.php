@@ -14,4 +14,9 @@ class Statistics
 	{
 		return $this->_stats;
 	}
+
+	public function increaseAsserts()
+	{
+		$this->_stats['asserts']++;
+	}
 }

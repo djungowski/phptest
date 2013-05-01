@@ -160,11 +160,9 @@ class TestCase
 	 */
 	public function assertNotEquals($value1, $value2)
 	{
-		$this->stats['run-asserts']++;
-		if ($value1 == $value2) {
-			throw new Assertion\Exception('Failed asserting that "' . $value2 . '" does not equal "' . $value1 . '"');
-		}
-		$this->stats['pass']++;
+		$condition = ($value1 != $value2);
+		$errorMessage = sprintf('Failed asserting that "%s" does not equal "%s"', $value1, $value2);
+		$this->assert($condition, $errorMessage);
 	}
 
 	/**

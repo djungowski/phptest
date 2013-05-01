@@ -17,7 +17,8 @@ class DirectoryTest extends TestCase
 		$actual = $dir->getFiles();
 
 		$expected = array(
-			$path . DIRECTORY_SEPARATOR . 'ExceptionTest.php'
+			$path . DIRECTORY_SEPARATOR . 'ExceptionTest.php',
+			$path . DIRECTORY_SEPARATOR . 'NoAssertionsExceptionTest.php'
 		);
 
 		$this->assertEquals($expected, $actual);

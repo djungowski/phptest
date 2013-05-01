@@ -37,6 +37,10 @@ class TestCase
 				throw $e;
 			}
 		}
+		// Throw exception if class has no test methods
+		if ($this->stats['run-methods'] == 0) {
+			throw new Assertion\Exception('TestCase "' . get_class($this) . '" has no tests');
+		}
 	}
 
     /**

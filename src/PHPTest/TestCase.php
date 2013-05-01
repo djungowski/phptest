@@ -43,6 +43,17 @@ class TestCase
 		$this->printStatistics();
 	}
 
+
+    /**
+     * Returnstje statistics for the TestCase
+     *
+     * @return array
+     */
+    public function getStatistics()
+    {
+        return $this->stats;
+    }
+
 	/**
 	 * Prints the statistics for the TestCase
 	 */

@@ -211,4 +211,21 @@ class TestCaseTest extends TestCase
 		$someOtherClass = $someClass;
 		$this->assertSame($someClass, $someOtherClass);
 	}
+
+	/**
+	 * @Test
+	 */
+	public function assertSameFail()
+	{
+		$someClass = new \StdClass;
+		$someClass->someProperty = time() + rand(1000, 9999);
+		$someOtherClass = clone $someClass;
+		$exception = false;
+		try {
+			$this->assertSame($someClass, $someOtherClass);	
+		} catch (AE $e) {
+			$exception = true;
+		}
+		$this->assertTrue($exception);
+	}
 }

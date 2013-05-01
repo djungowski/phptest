@@ -69,10 +69,7 @@ class Run extends Command
     {
         $testCase->run();
         $stats = $testCase->getStatistics();
-        $this->_stats->increaseAsserts($stats['asserts']);
-        $this->_stats->increaseMethods($stats['methods']);
-        $this->_stats->increasePassed($stats['passed']);
-        $this->_stats->increaseFails($stats['fails']);
+        $this->_stats->increase($stats);
     }
 
     /**

@@ -44,7 +44,7 @@ class TestCase
 	}
 
     /**
-     * Returnstje statistics for the TestCase
+     * Returns the statistics for the TestCase
      *
      * @return array
      */
@@ -53,6 +53,11 @@ class TestCase
         return $this->stats;
     }
 
+    /**
+     * Get the calling method for a failed test
+     *
+     * @return String
+     */
 	private function getCallingTestMethod()
 	{
 		$trace = debug_backtrace();

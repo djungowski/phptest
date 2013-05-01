@@ -11,10 +11,10 @@ class TestCase
 	 * @var Array
 	 */
 	private $stats = array(
-		'run-methods' => 0,
-		'run-asserts' => 0,
-		'pass' => 0,
-		'fail' => 0
+		'methods' => 0,
+		'asserts' => 0,
+		'passed' => 0,
+		'fails' => 0
 	);
 
 	/**
@@ -25,21 +25,21 @@ class TestCase
 	{
 		$reflection = new Reflection($this);
 		foreach ($reflection->getTestMethods() as $method) {
-			$runBefore = $this->stats['run-asserts'];
-			$this->stats['run-methods']++;
+			$runBefore = $this->stats['asserts'];
+			$this->stats['methods']++;
 			try {
 				$this->$method();
-				if ($this->stats['run-asserts'] == $runBefore) {
+				if ($this->stats['asserts'] == $runBefore) {
 					$errorMessage = sprintf('Test %s::%s has no assertions', get_class($this), $method);
 					throw new Assertion\NoAssertionsException($errorMessage);
 				}
 			} catch (Assertion\Exception $e) {
-				$this->stats['fail']++;
+				$this->stats['fails']++;
 				throw $e;
 			}
 		}
 		// Throw exception if class has no test methods
-		if ($this->stats['run-methods'] == 0) {
+		if ($this->stats['methods'] == 0) {
 			$errorMessage = sprintf('TestCase "%s" has no tests', get_class($this));
 			throw new EmptyTestException($errorMessage);
 		}
@@ -88,7 +88,7 @@ class TestCase
 	 */
 	private function assert($condition, $errorMessage)
 	{
-		$this->stats['run-asserts']++;
+		$this->stats['asserts']++;
 		$assertion = assert($condition);
 		if ($assertion != true) {
 			$callingMethod = $this->getCallingTestMethod();
@@ -102,7 +102,7 @@ class TestCase
 			);
 			throw new Assertion\Exception($errorMessage);
 		}
-		$this->stats['pass']++;
+		$this->stats['passed']++;
 	}
 
 	/**

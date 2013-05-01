@@ -48,20 +48,20 @@ class Run extends Command
         foreach ($tests as $test) {
             $test->run();
             $stats = $test->getStatistics();
-            $asserts += $stats['run-asserts'];
-            $methods += $stats['run-methods'];
-            $passed += $stats['pass'];
-            $fails += $stats['fail'];
+            $asserts += $stats['asserts'];
+            $methods += $stats['methods'];
+            $passed += $stats['passed'];
+            $fails += $stats['fails'];
 
             $info = sprintf(
                 get_class($test) . ' - Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
-                $stats['run-methods'],
-                $stats['run-asserts'],
-                $stats['pass'],
-                $stats['fail']
+                $stats['methods'],
+                $stats['asserts'],
+                $stats['passed'],
+                $stats['fails']
             );
 
-            if ($stats['fail'] > 0) {
+            if ($stats['fails'] > 0) {
                 $output->writeln("<error>{$info}</error>");
             } else {
                 $output->writeln("<bg=green>{$info}</bg=green>");

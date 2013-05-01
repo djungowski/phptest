@@ -17,6 +17,7 @@ class Statistics
 
 	public function increaseAsserts($increase = 1)
 	{
+		$increase = (int)$increase;
 		$this->_stats['asserts'] += $increase;
 	}
 }

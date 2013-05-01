@@ -45,4 +45,16 @@ class StatisticsTest extends TestCase
 		$expected = 5;
 		$this->assertEquals($expected, $actual['asserts']);
 	}
+
+	/**
+	 * @Test
+	 */	
+	public function increaseAssertsWithString()
+	{
+		$stats = new Statistics();
+		$stats->increaseAsserts('foob4r');
+		$actual = $stats->get();
+		$expected = 0;
+		$this->assertEquals($expected, $actual['asserts']);
+	}
 }

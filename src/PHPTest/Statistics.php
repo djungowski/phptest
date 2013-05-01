@@ -94,8 +94,13 @@ class Statistics
 		}
 	}
 
+	/**
+	 * See if the statistics has counted any fails
+	 *
+	 * @return Boolean
+	 */
 	public function hasFails()
 	{
-		return false;
+		return ($this->get('fails') > 0);
 	}
 }

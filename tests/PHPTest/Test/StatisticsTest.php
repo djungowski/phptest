@@ -271,4 +271,15 @@ class StatisticsTest extends TestCase
 		$actual = $stats->hasFails();
 		$this->assertFalse($actual);
 	}
+
+	/**
+	 * @Test
+	 */
+	public function hasFailsTrue()
+	{
+		$stats = new Statistics();
+		$stats->increaseFails();
+		$actual = $stats->hasFails();
+		$this->assertTrue($actual);
+	}
 }

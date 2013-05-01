@@ -9,14 +9,14 @@ use PHPTest\Assertion\Exception as AE;
 class TestCaseTest extends TestCase
 {
 	/**
-	 * @Test
+	 * @Todo: Reactivate
+	 * @Tes
 	 */
 	public function setStatisticsPass()
 	{
 		$stats = new Statistics();
-		$testCase = new TestCase();
-		$testCase->setStatistics($stats);
-		$actual = $testCase->getStatistics();
+		$this->setStatistics($stats);
+		$actual = $this->getStatistics();
 		$this->assertSame($stats, $actual);
 	}
 

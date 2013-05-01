@@ -257,7 +257,7 @@ class StatisticsTest extends TestCase
 	        'passed'    => 3,
 	        'fails'     => 9
 	    );
-	    $stats->increase($increase);
+	    $stats->increaseWithArray($increase);
 
 	    $expected = array(
 	        'asserts'   => 8,
@@ -266,6 +266,29 @@ class StatisticsTest extends TestCase
 	        'fails'     => 13
 	    );
 	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
+	}
+
+	/**
+	 * @Test
+	 */
+	public function increaseWithObject()
+	{
+		$stats1 = new Statistics();
+		$stats1->increaseAsserts(6);
+		$stats1->increaseMethods(3);
+		$stats1->increasePassed(9);
+		$stats1->increaseFails(4);
+
+		$stats2 = new Statistics();
+		$stats2->increase($stats1);
+		$expected = array(
+	        'asserts'   => 6,
+	        'methods'   => 3,
+	        'passed'    => 9,
+	        'fails'     => 4
+	    );
+	    $actual = $stats2->get();
 	    $this->assertEquals($expected, $actual);
 	}
 }

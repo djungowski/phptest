@@ -91,10 +91,22 @@ class Statistics
 	 *
 	 * @param Array $increment
 	 */
-	public function increase(Array $increment)
+	public function increaseWithArray(Array $increment)
 	{
 		foreach ($this->_stats as $key => $value) {
 			$this->increaseValue($key, $increment[$key]);
+		}
+	}
+
+	/**
+	 * Increase all values with values from another statistics object
+	 *
+	 * @param Statistics $increment
+	 */
+	public function increase(Statistics $increment)
+	{
+		foreach ($this->_stats as $key => $value) {
+			$this->increaseValue($key, $increment->get($key));
 		}
 	}
 }

@@ -67,6 +67,7 @@ class Run extends Command
      */
     private function runTestCase(TestCase $testCase)
     {
+        $testCase->setStatistics(new Statistics());
         $testCase->run();
         $stats = $testCase->getStatistics();
         $this->_stats->increase($stats);
@@ -77,7 +78,7 @@ class Run extends Command
      */
     private function printTestStats(OutputInterface $output, TestCase $testCase)
     {
-        $testStats = $testCase->getStatistics();        
+        $testStats = $testCase->getStatistics()->get();
         $info = sprintf(
             '%s - Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
             get_class($testCase),

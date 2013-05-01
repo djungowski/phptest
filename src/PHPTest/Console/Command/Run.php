@@ -10,6 +10,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Run extends Command
 {
+    private $_stats = array(
+        'asserts'   => 0,
+        'methods'   => 0,
+        'passed'    => 0,
+        'fails'     => 0
+    );
+
     protected function configure()
     {
         $this
@@ -28,11 +35,6 @@ class Run extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $asserts = 0;
-        $methods = 0;
-        $passed = 0;
-        $fails = 0;
-
         $tests = array(
             new \PHPTest\Test\EmptyTestExceptionTest(),
             new \PHPTest\Test\Assertion\NoAssertionsExceptionTest(),
@@ -48,10 +50,10 @@ class Run extends Command
         foreach ($tests as $test) {
             $test->run();
             $stats = $test->getStatistics();
-            $asserts += $stats['asserts'];
-            $methods += $stats['methods'];
-            $passed += $stats['passed'];
-            $fails += $stats['fails'];
+            $this->_stats['asserts'] += $stats['asserts'];
+            $this->_stats['methods'] += $stats['methods'];
+            $this->_stats['passed'] += $stats['passed'];
+            $this->_stats['fails'] += $stats['fails'];
 
             $info = sprintf(
                 get_class($test) . ' - Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
@@ -78,13 +80,13 @@ class Run extends Command
 
         $info = sprintf(
             'Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
-            $methods,
-            $asserts,
-            $passed,
-            $fails
+            $this->_stats['methods'],
+            $this->_stats['asserts'],
+            $this->_stats['passed'],
+            $this->_stats['fails']
         );
 
-        if ($fails > 0) {
+        if ($this->_stats['fails'] > 0) {
             $output->writeln("<error>{$info}</error>");
         } else {
             $output->writeln("<bg=green>{$info}</bg=green>");

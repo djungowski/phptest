@@ -11,10 +11,10 @@ class TestCase
 	 * @var Array
 	 */
 	private $_stats = array(
-		'methods' => 0,
-		'asserts' => 0,
-		'passed' => 0,
-		'fails' => 0
+		'methods'	=> 0,
+		'asserts'	=> 0,
+		'passed'	=> 0,
+		'fails'		=> 0
 	);
 
 	/**

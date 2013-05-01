@@ -20,8 +20,11 @@ class Statistics
 	 *
 	 * @return Array
 	 */
-	public function get()
+	public function get($value = null)
 	{
+		if (!is_null($value)) {
+			return $this->_stats[$value];
+		}
 		return $this->_stats;
 	}
 

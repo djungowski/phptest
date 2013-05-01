@@ -15,27 +15,29 @@ class Statistics
 		return $this->_stats;
 	}
 
-	public function increaseAsserts($increase = 1)
+	private function increaseValue($value, $increase)
 	{
 		$increase = (int)$increase;
-		$this->_stats['asserts'] += $increase;
+		$this->_stats[$value] += $increase;
+	}
+
+	public function increaseAsserts($increase = 1)
+	{
+		$this->increaseValue('asserts', $increase);
 	}
 
 	public function increaseMethods($increase = 1)
 	{
-		$increase = (int)$increase;
-		$this->_stats['methods'] += $increase;
+		$this->increaseValue('methods', $increase);
 	}
 
 	public function increasePassed($increase = 1)
 	{
-		$increase = (int)$increase;
-		$this->_stats['passed'] += $increase;
+		$this->increaseValue('passed', $increase);
 	}
 
 	public function increaseFails($increase = 1)
 	{
-		$increase = (int)$increase;
-		$this->_stats['fails'] += $increase;
+		$this->increaseValue('fails', $increase);
 	}
 }

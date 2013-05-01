@@ -61,7 +61,7 @@ class Run extends Command
         $output->writeln('Finished');
         $output->writeln('');
 
-        $this->printTotalStats($output);
+        $this->printOverallStats($output);
     }
 
     /**
@@ -79,6 +79,9 @@ class Run extends Command
         $this->_stats['fails'] += $stats['fails'];
     }
 
+    /**
+     * Prints the statistics for a TestCase
+     */
     private function printTestStats(OutputInterface $output, TestCase $testCase)
     {
         $testStats = $testCase->getStatistics();        
@@ -100,7 +103,10 @@ class Run extends Command
         $output->writeln('');
     }
 
-    private function printTotalStats(OutputInterface $output)
+    /**
+     * Prints the overall statistics
+     */
+    private function printOverallStats(OutputInterface $output)
     {
         $output->writeln('Total:');
 

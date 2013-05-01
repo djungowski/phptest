@@ -39,7 +39,6 @@ class TestCase
 		}
 	}
 
-
     /**
      * Returnstje statistics for the TestCase
      *
@@ -65,12 +64,28 @@ class TestCase
 		print PHP_EOL;
 	}
 
+	private function getCallingTestMethod()
+	{
+		$trace = debug_backtrace();
+		// 0: current function/method
+		// 1: TestCase::assert()
+		// 2: TestCase::assert<Method>()
+		// 3: Original Testmethod
+		$caller = $trace[3];
+		$callerString = '';
+		if (isset($caller['class'])) {
+			$callerString .= $caller['class'] . '::';
+		}
+		$callerString .= $caller['function'];
+		return $callerString;
+	}
+
 	private function assert($trueCondition, $errorMessage)
 	{
 		$this->stats['run-asserts']++;
 		if (!$trueCondition) {
-			$this->stats['fail']++;
-			print($errorMessage);
+			$callingMethod = $this->getCallingTestMethod();
+			$errorMessage = sprintf('Error in Testmethod %s%s%s', $callingMethod, PHP_EOL, $errorMessage);
 			throw new Assertion\Exception($errorMessage);
 		}
 		$this->stats['pass']++;

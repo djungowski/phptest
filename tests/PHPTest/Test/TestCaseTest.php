@@ -15,7 +15,8 @@ class TestCaseTest extends TestCase
 	}
 
 	/**
-	 * @Test 
+	 * @Test
+	 * @expectException Assertion\Exception
 	 */
 	public function assertTrueFail()
 	{

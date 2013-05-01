@@ -17,7 +17,9 @@ class Statistics
 
 	/**
 	 * Get all the statistics
+	 * Return one specific value if provided
 	 *
+	 * @param String $value
 	 * @return Array
 	 */
 	public function get($value = null)

@@ -172,11 +172,9 @@ class TestCase
 	 */
 	public function assertIn($haystack, $needle)
 	{
-		$this->stats['run-asserts']++;
-		if (!in_array($needle, $haystack)) {
-			throw new Assertion\Exception('Failed asserting that "' . $needle . '" is in "' . serialize($haystack) . '"');
-		}
-		$this->stats['pass']++;
+		$condition = in_array($needle, $haystack);
+		$errorMessage = sprintf('Failed asserting that "%s" is in %s', $needle, serialize($haystack));
+		$this->assert($condition, $errorMessage);
 	}
 
 	/**

@@ -53,21 +53,6 @@ class TestCase
         return $this->stats;
     }
 
-	/**
-	 * Prints the statistics for the TestCase
-	 */
-	private function printStatistics()
-	{
-		printf(
-			'Tests: %d, Assertions: %d, Failures: %d',
-			$this->stats['run-methods'],
-			$this->stats['run-asserts'],
-			$this->stats['pass'],
-			$this->stats['fail']
-		);
-		print PHP_EOL;
-	}
-
 	private function getCallingTestMethod()
 	{
 		$trace = debug_backtrace();

@@ -25,12 +25,24 @@ class StatisticsTest extends TestCase
 	/**
 	 * @Test
 	 */	
-	public function defaultIncreaseAsserts()
+	public function increaseAssertsWithDefaultValue()
 	{
 		$stats = new Statistics();
 		$stats->increaseAsserts();
 		$actual = $stats->get();
 		$expected = 1;
+		$this->assertEquals($expected, $actual['asserts']);
+	}
+
+	/**
+	 * @Test
+	 */	
+	public function increaseAssertsWithCustomValue()
+	{
+		$stats = new Statistics();
+		$stats->increaseAsserts(5);
+		$actual = $stats->get();
+		$expected = 5;
 		$this->assertEquals($expected, $actual['asserts']);
 	}
 }

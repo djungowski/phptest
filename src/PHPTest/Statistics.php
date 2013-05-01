@@ -15,8 +15,8 @@ class Statistics
 		return $this->_stats;
 	}
 
-	public function increaseAsserts()
+	public function increaseAsserts($increase = 1)
 	{
-		$this->_stats['asserts']++;
+		$this->_stats['asserts'] += $increase;
 	}
 }

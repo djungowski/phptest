@@ -53,7 +53,7 @@ class Run extends Command
         $output->writeln('');
 
         foreach ($tests as $test) {
-            $this->runTest($test);
+            $this->runTestCase($test);
             $this->printTestStats($output, $test);
         }
 
@@ -64,22 +64,27 @@ class Run extends Command
         $this->printTotalStats($output);
     }
 
-    private function runTest(TestCase $test)
+    /**
+     * Runs a single TestCase
+     *
+     * @param PHPTest\TestCase $testCase
+     */
+    private function runTestCase(TestCase $testCase)
     {
-        $test->run();
-        $stats = $test->getStatistics();
+        $testCase->run();
+        $stats = $testCase->getStatistics();
         $this->_stats['asserts'] += $stats['asserts'];
         $this->_stats['methods'] += $stats['methods'];
         $this->_stats['passed'] += $stats['passed'];
         $this->_stats['fails'] += $stats['fails'];
     }
 
-    private function printTestStats(OutputInterface $output, TestCase $test)
+    private function printTestStats(OutputInterface $output, TestCase $testCase)
     {
-        $testStats = $test->getStatistics();        
+        $testStats = $testCase->getStatistics();        
         $info = sprintf(
             '%s - Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
-            get_class($test),
+            get_class($testCase),
             $testStats['methods'],
             $testStats['asserts'],
             $testStats['passed'],

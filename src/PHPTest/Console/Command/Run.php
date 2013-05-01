@@ -42,11 +42,12 @@ class Run extends Command
     {
         $tests = array(
             new \PHPTest\Test\EmptyTestExceptionTest(),
-            new \PHPTest\Test\Assertion\NoAssertionsExceptionTest(),
             new \PHPTest\Test\TestCaseTest(),
             new \PHPTest\Test\ReflectionTest(),
             new \PHPTest\Test\Assertion\ExceptionTest(),
-            new \PHPTest\Test\DirectoryTest()
+            new \PHPTest\Test\Assertion\NoAssertionsExceptionTest(),
+            new \PHPTest\Test\DirectoryTest(),
+            new \PHPTest\Test\StatisticsTest()
         );
 
         $output->writeln('Running PHPTest');

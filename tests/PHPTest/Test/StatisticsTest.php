@@ -29,9 +29,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increaseAsserts();
-		$actual = $stats->get();
-		$expected = 1;
-		$this->assertEquals($expected, $actual['asserts']);
+		$expected = array(
+	        'asserts'   => 1,
+	        'methods'   => 0,
+	        'passed'    => 0,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+		$this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -41,9 +46,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increaseAsserts(5);
-		$actual = $stats->get();
-		$expected = 5;
-		$this->assertEquals($expected, $actual['asserts']);
+		$expected = array(
+	        'asserts'   => 5,
+	        'methods'   => 0,
+	        'passed'    => 0,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+		$this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -53,9 +63,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increaseAsserts('foob4r');
-		$actual = $stats->get();
-		$expected = 0;
-		$this->assertEquals($expected, $actual['asserts']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 0,
+	        'passed'    => 0,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -65,9 +80,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increaseMethods();
-		$actual = $stats->get();
-		$expected = 1;
-		$this->assertEquals($expected, $actual['methods']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 1,
+	        'passed'    => 0,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -77,9 +97,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increaseMethods(5);
-		$actual = $stats->get();
-		$expected = 5;
-		$this->assertEquals($expected, $actual['methods']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 5,
+	        'passed'    => 0,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -89,9 +114,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increaseMethods('foob4r');
-		$actual = $stats->get();
-		$expected = 0;
-		$this->assertEquals($expected, $actual['methods']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 0,
+	        'passed'    => 0,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -101,9 +131,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increasePassed();
-		$actual = $stats->get();
-		$expected = 1;
-		$this->assertEquals($expected, $actual['passed']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 0,
+	        'passed'    => 1,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -113,9 +148,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increasePassed(5);
-		$actual = $stats->get();
-		$expected = 5;
-		$this->assertEquals($expected, $actual['passed']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 0,
+	        'passed'    => 5,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -125,9 +165,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increasePassed('foob4r');
-		$actual = $stats->get();
-		$expected = 0;
-		$this->assertEquals($expected, $actual['passed']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 0,
+	        'passed'    => 0,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 
 
@@ -138,9 +183,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increaseFails();
-		$actual = $stats->get();
-		$expected = 1;
-		$this->assertEquals($expected, $actual['fails']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 0,
+	        'passed'    => 0,
+	        'fails'     => 1
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -150,9 +200,14 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increaseFails(5);
-		$actual = $stats->get();
-		$expected = 5;
-		$this->assertEquals($expected, $actual['fails']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 0,
+	        'passed'    => 0,
+	        'fails'     => 5
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 
 	/**
@@ -162,8 +217,13 @@ class StatisticsTest extends TestCase
 	{
 		$stats = new Statistics();
 		$stats->increaseFails('foob4r');
-		$actual = $stats->get();
-		$expected = 0;
-		$this->assertEquals($expected, $actual['fails']);
+		$expected = array(
+	        'asserts'   => 0,
+	        'methods'   => 0,
+	        'passed'    => 0,
+	        'fails'     => 0
+	    );
+	    $actual = $stats->get();
+	    $this->assertEquals($expected, $actual);
 	}
 }

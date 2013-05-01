@@ -3,14 +3,6 @@
 
 require_once 'vendor/autoload.php';
 
-$phpTest = new PHPTest\Test\TestCaseTest();
-$phpTest->run();
-
-$phpTest = new PHPTest\Test\ReflectionTest();
-$phpTest->run();
-
-$phpTest = new PHPTest\Test\Assertion\ExceptionTest();
-$phpTest->run();
-
-$phpTest = new PHPTest\Test\DirectoryTest();
-$phpTest->run();
+$console = new Symfony\Component\Console\Application();
+$console->add(new \PHPTest\Console\Command\Run());
+$console->run();

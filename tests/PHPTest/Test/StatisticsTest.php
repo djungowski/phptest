@@ -240,36 +240,6 @@ class StatisticsTest extends TestCase
 	}
 
 	/**
-	 * @Test
-	 */
-	public function increaseWithArray()
-	{
-		$stats = new Statistics();
-		// First: Increase every value by some value in order to make sure, that the array isn't simply replaced
-		$stats->increaseAsserts(6);
-		$stats->increaseMethods(3);
-		$stats->increasePassed(9);
-		$stats->increaseFails(4);
-		// Now increase all values with an array
-		$increase = array(
-	        'asserts'   => 2,
-	        'methods'   => 6,
-	        'passed'    => 3,
-	        'fails'     => 9
-	    );
-	    $stats->increaseWithArray($increase);
-
-	    $expected = array(
-	        'asserts'   => 8,
-	        'methods'   => 9,
-	        'passed'    => 12,
-	        'fails'     => 13
-	    );
-	    $actual = $stats->get();
-	    $this->assertEquals($expected, $actual);
-	}
-
-	/**
 	 * @Test
 	 */
 	public function increaseWithObject()

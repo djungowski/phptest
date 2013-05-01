@@ -83,22 +83,6 @@ class Statistics
 	}
 
 	/**
-	 * Increase all values with given array. The array must have the following keys:
-	 *  - asserts
-	 *  - methods
-	 *  - passed
-	 *  - fails
-	 *
-	 * @param Array $increment
-	 */
-	public function increaseWithArray(Array $increment)
-	{
-		foreach ($this->_stats as $key => $value) {
-			$this->increaseValue($key, $increment[$key]);
-		}
-	}
-
-	/**
 	 * Increase all values with values from another statistics object
 	 *
 	 * @param Statistics $increment

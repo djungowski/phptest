@@ -16,6 +16,14 @@ class Run extends Command
             ->setName('run')
             ->setDescription('Run tests')
         ;
+        $this->setAssertionOptions();
+    }
+
+    private function setAssertionOptions()
+    {
+        assert_options(ASSERT_ACTIVE, 1);
+        assert_options(ASSERT_WARNING, 0);
+        assert_options(ASSERT_QUIET_EVAL, 1);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

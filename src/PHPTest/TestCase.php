@@ -30,7 +30,8 @@ class TestCase
 			try {
 				$this->$method();
 				if ($this->stats['run-asserts'] == $runBefore) {
-					throw new Assertion\NoAssertionsException('Test "' . $method . '" has no assertions');
+					$errorMessage = sprintf('Test %s::%s has no assertions', get_class($this), $method);
+					throw new Assertion\NoAssertionsException($errorMessage);
 				}
 			} catch (Assertion\Exception $e) {
 				$this->stats['fail']++;
@@ -39,7 +40,8 @@ class TestCase
 		}
 		// Throw exception if class has no test methods
 		if ($this->stats['run-methods'] == 0) {
-			throw new EmptyTestException('TestCase "' . get_class($this) . '" has no tests');
+			$errorMessage = sprintf('TestCase "%s" has no tests', get_class($this));
+			throw new EmptyTestException($errorMessage);
 		}
 	}
 
@@ -65,13 +67,13 @@ class TestCase
 		// 1: TestCase::assert()
 		// 2: TestCase::assert<Method>()
 		// 3: Original Testmethod
-		$caller = $trace[3];
-		$callerString = '';
-		if (isset($caller['class'])) {
-			$callerString .= $caller['class'] . '::';
+		$callerTrace = $trace[3];
+		$callingMethod = '';
+		if (isset($callerTrace['class'])) {
+			$callingMethod .= $callerTrace['class'] . '::';
 		}
-		$callerString .= $caller['function'];
-		return $callerString;
+		$callingMethod .= $callerTrace['function'];
+		return $callingMethod;
 	}
 
 	/**
@@ -82,9 +84,15 @@ class TestCase
 	private function assert($trueCondition, $errorMessage)
 	{
 		$this->stats['run-asserts']++;
-		if (!$trueCondition) {
+		$assertion = assert($trueCondition);
+		if ($assertion != true) {
 			$callingMethod = $this->getCallingTestMethod();
-			$errorMessage = sprintf('Error in Testmethod %s%s%s', $callingMethod, PHP_EOL, $errorMessage);
+			$errorMessage = sprintf(
+				'Error in Testmethod %s %s %s',
+				$callingMethod,
+				PHP_EOL,
+				$errorMessage
+			);
 			throw new Assertion\Exception($errorMessage);
 		}
 		$this->stats['pass']++;
@@ -121,11 +129,9 @@ class TestCase
 	 */
 	public function assertInstanceOf($expected, $actual)
 	{
-		$this->stats['run-asserts']++;
-		if (!($actual instanceof $expected)) {
-			throw new Assertion\Exception('Failed asserting that "' . get_class($actual) . '" is of type "' . $expected . '"');
-		}
-		$this->stats['pass']++;
+		$trueCondition = ($actual instanceof $expected);
+		$errorMessage = sprintf('Failed asserting that "%s" is of type "%s"', get_class($actual), $expected);
+		$this->assert($trueCondition, $errorMessage);
 	}
 
 	/**

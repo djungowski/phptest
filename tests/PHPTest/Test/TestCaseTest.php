@@ -21,6 +21,8 @@ class TestCaseTest extends TestCase
 	public function assertTrueFail()
 	{
 		$exception = false;
+		$this->assertTrue(false);
+		return;
 		try {
 			$this->assertTrue(false);
 		} catch (Assertion\Exception $e) {

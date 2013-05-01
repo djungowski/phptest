@@ -3,6 +3,7 @@
 namespace PHPTest\Test;
 
 use PHPTest\TestCase;
+use PHPTest\Assertion\Exception as AE;
 
 class TestCaseTest extends TestCase
 {
@@ -21,11 +22,9 @@ class TestCaseTest extends TestCase
 	public function assertTrueFail()
 	{
 		$exception = false;
-		$this->assertTrue(false);
-		return;
 		try {
 			$this->assertTrue(false);
-		} catch (Assertion\Exception $e) {
+		} catch (AE $e) {
 			$exception = true;
 		}
 		// Use different comparison method in order to ensure that the error is not in assertTrue
@@ -48,7 +47,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertFalse(true);
-		} catch (Assertion\Exception $e) {
+		} catch (AE $e) {
 			$exception = true;
 		}
 		// Use different comparison method in order to ensure that the error is not in assertTrue
@@ -76,7 +75,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertEquals($expected, $actual);
-		} catch(Assertion\Exception $e) {
+		} catch(AE $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);
@@ -102,7 +101,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertNotEquals($expected, $actual);
-		} catch(Assertion\Exception $e) {
+		} catch(AE $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);
@@ -124,7 +123,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertInstanceOf('Foo\Bar', $this);
-		} catch (Assertion\Exception $e) {
+		} catch (AE $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);
@@ -160,7 +159,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertIn($haystack, $needle);
-		} catch(Assertion\Exception $e) {
+		} catch(AE $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);
@@ -196,7 +195,7 @@ class TestCaseTest extends TestCase
 		$exception = false;
 		try {
 			$this->assertNotIn($haystack, $needle);
-		} catch(Assertion\Exception $e) {
+		} catch(AE $e) {
 			$exception = true;
 		}
 		$this->assertTrue($exception);

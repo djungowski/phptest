@@ -68,11 +68,16 @@ class TestCase
 		// 2: TestCase::assert<Method>()
 		// 3: Original Testmethod
 		$callerTrace = $trace[3];
-		$callingMethod = '';
+		$assertionTrace = $trace[2];
+		$callingMethod = array(
+			'name' => '',
+			'assertion' => 0
+		);
 		if (isset($callerTrace['class'])) {
-			$callingMethod .= $callerTrace['class'] . '::';
+			$callingMethod['name'] .= $callerTrace['class'] . '::';
 		}
-		$callingMethod .= $callerTrace['function'];
+		$callingMethod['name'] .= $callerTrace['function'];
+		$callingMethod['assertion'] = $assertionTrace['function'];
 		return $callingMethod;
 	}
 
@@ -88,9 +93,11 @@ class TestCase
 		if ($assertion != true) {
 			$callingMethod = $this->getCallingTestMethod();
 			$errorMessage = sprintf(
-				'Error in Testmethod %s %s %s',
-				$callingMethod,
-				PHP_EOL,
+				'Error in Testmethod %s' . PHP_EOL .
+				'Used Assertion: "%s"' . PHP_EOL .
+				'%s',
+				$callingMethod['name'],
+				$callingMethod['assertion'],
 				$errorMessage
 			);
 			throw new Assertion\Exception($errorMessage);

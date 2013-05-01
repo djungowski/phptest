@@ -20,4 +20,16 @@ class Statistics
 		$increase = (int)$increase;
 		$this->_stats['asserts'] += $increase;
 	}
+
+	public function increaseMethods($increase = 1)
+	{
+		$increase = (int)$increase;
+		$this->_stats['methods'] += $increase;
+	}
+
+	public function increasePassed($increase = 1)
+	{
+		$increase = (int)$increase;
+		$this->_stats['passed'] += $increase;
+	}
 }

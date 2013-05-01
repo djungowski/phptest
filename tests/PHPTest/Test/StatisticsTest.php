@@ -94,7 +94,6 @@ class StatisticsTest extends TestCase
 		$this->assertEquals($expected, $actual['methods']);
 	}
 
-
 	/**
 	 * @Test
 	 */	
@@ -122,12 +121,49 @@ class StatisticsTest extends TestCase
 	/**
 	 * @Test
 	 */	
-	public function increasePassedsWithString()
+	public function increasePassedWithString()
 	{
 		$stats = new Statistics();
 		$stats->increasePassed('foob4r');
 		$actual = $stats->get();
 		$expected = 0;
 		$this->assertEquals($expected, $actual['passed']);
+	}
+
+
+	/**
+	 * @Test
+	 */	
+	public function increaseFailsWithDefaultValue()
+	{
+		$stats = new Statistics();
+		$stats->increaseFails();
+		$actual = $stats->get();
+		$expected = 1;
+		$this->assertEquals($expected, $actual['fails']);
+	}
+
+	/**
+	 * @Test
+	 */	
+	public function increaseFailsWithCustomValue()
+	{
+		$stats = new Statistics();
+		$stats->increaseFails(5);
+		$actual = $stats->get();
+		$expected = 5;
+		$this->assertEquals($expected, $actual['fails']);
+	}
+
+	/**
+	 * @Test
+	 */	
+	public function increaseFailsWithString()
+	{
+		$stats = new Statistics();
+		$stats->increaseFails('foob4r');
+		$actual = $stats->get();
+		$expected = 0;
+		$this->assertEquals($expected, $actual['fails']);
 	}
 }

@@ -32,4 +32,10 @@ class Statistics
 		$increase = (int)$increase;
 		$this->_stats['passed'] += $increase;
 	}
+
+	public function increaseFails($increase = 1)
+	{
+		$increase = (int)$increase;
+		$this->_stats['fails'] += $increase;
+	}
 }

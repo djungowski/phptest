@@ -8,16 +8,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use PHPTest\TestCase;
+use PHPTest\Statistics;
 
 class Run extends Command
 {
-    private $_stats = array(
-        'asserts'   => 0,
-        'methods'   => 0,
-        'passed'    => 0,
-        'fails'     => 0
-    );
-
     protected function configure()
     {
         $this
@@ -25,6 +19,7 @@ class Run extends Command
             ->setDescription('Run tests')
         ;
         $this->setAssertionOptions();
+        $this->_stats = new Statistics();
     }
 
     /**
@@ -74,10 +69,10 @@ class Run extends Command
     {
         $testCase->run();
         $stats = $testCase->getStatistics();
-        $this->_stats['asserts'] += $stats['asserts'];
-        $this->_stats['methods'] += $stats['methods'];
-        $this->_stats['passed'] += $stats['passed'];
-        $this->_stats['fails'] += $stats['fails'];
+        $this->_stats->increaseAsserts($stats['asserts']);
+        $this->_stats->increaseMethods($stats['methods']);
+        $this->_stats->increasePassed($stats['passed']);
+        $this->_stats->increaseFails($stats['fails']);
     }
 
     /**
@@ -111,15 +106,16 @@ class Run extends Command
     {
         $output->writeln('Total:');
 
+        $stats = $this->_stats->get();
         $info = sprintf(
             'Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
-            $this->_stats['methods'],
-            $this->_stats['asserts'],
-            $this->_stats['passed'],
-            $this->_stats['fails']
+            $stats['methods'],
+            $stats['asserts'],
+            $stats['passed'],
+            $stats['fails']
         );
 
-        if ($this->_stats['fails'] > 0) {
+        if ($stats['fails'] > 0) {
             $output->writeln("<error>{$info}</error>");
         } else {
             $output->writeln("<bg=green>{$info}</bg=green>");

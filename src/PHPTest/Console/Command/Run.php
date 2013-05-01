@@ -88,7 +88,7 @@ class Run extends Command
             $testStats->get('fails')
         );
 
-        if ($testStats->get('fails') > 0) {
+        if ($testStats->hasFails()) {
             $output->writeln("<error>{$info}</error>");
         } else {
             $output->writeln("<bg=green>{$info}</bg=green>");
@@ -112,7 +112,7 @@ class Run extends Command
             $this->_stats->get('fails')
         );
 
-        if ($this->_stats->get('fails') > 0) {
+        if ($this->_stats->hasFails()) {
             $output->writeln("<error>{$info}</error>");
         } else {
             $output->writeln("<bg=green>{$info}</bg=green>");

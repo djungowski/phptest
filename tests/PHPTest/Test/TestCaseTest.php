@@ -3,10 +3,23 @@
 namespace PHPTest\Test;
 
 use PHPTest\TestCase;
+use PHPTest\Statistics;
 use PHPTest\Assertion\Exception as AE;
 
 class TestCaseTest extends TestCase
 {
+	/**
+	 * @Test
+	 */
+	public function setStatisticsPass()
+	{
+		$stats = new Statistics();
+		$testCase = new TestCase();
+		$testCase->setStatistics($stats);
+		$actual = $testCase->getStatistics();
+		$this->assertSame($stats, $actual);
+	}
+
 	/**
 	 * @Test
 	 */

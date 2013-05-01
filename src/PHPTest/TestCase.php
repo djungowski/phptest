@@ -2,6 +2,7 @@
 namespace PHPTest;
 
 use PHPTest\Assertion;
+use PHPTest\Statistics;
 
 class TestCase
 {
@@ -45,10 +46,20 @@ class TestCase
 		}
 	}
 
+	/**
+	 * Set the statistics for the TestCase
+	 *
+	 * @param PHPTest\Statistics
+	 */
+	public function setStatistics(\PHPTest\Statistics $statistics)
+	{
+		$this->_stats = $statistics;
+	}
+
     /**
      * Returns the statistics for the TestCase
      *
-     * @return array
+     * @return PHPTest\Statistics
      */
     public function getStatistics()
     {

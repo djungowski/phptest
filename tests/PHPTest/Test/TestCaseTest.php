@@ -200,4 +200,15 @@ class TestCaseTest extends TestCase
 		}
 		$this->assertTrue($exception);
 	}
+
+	/**
+	 * @Test
+	 */
+	public function assertSamePass()
+	{
+		$someClass = new \StdClass;
+		$someClass->someProperty = time() + rand(1000, 9999);
+		$someOtherClass = $someClass;
+		$this->assertSame($someClass, $someOtherClass);
+	}
 }

@@ -188,4 +188,18 @@ class TestCase
 		$errorMessage = sprintf('Failed asserting that "%s" is not in %s', $needle, serialize($haystack));
 		$this->assert($condition, $errorMessage);
 	}
+
+	/**
+	 * Asserts that $expected and $actual are really the same
+	 */
+	public function assertSame($expected, $actual)
+	{
+		$condition = ($expected === $actual);
+		if (is_object($expected)) {
+			$errorMessage = sprintf('Failed asserting that 2 objects are the same', $expected, $actual);
+		} else {
+			$errorMessage = sprintf('Failed asserting that "%s" and "%s" are the same', $expected, $actual);
+		}
+		$this->assert($condition, $errorMessage);
+	}
 }

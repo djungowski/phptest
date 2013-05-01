@@ -61,21 +61,7 @@ class Run extends Command
         $output->writeln('Finished');
         $output->writeln('');
 
-        $output->writeln('Total:');
-
-        $info = sprintf(
-            'Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
-            $this->_stats['methods'],
-            $this->_stats['asserts'],
-            $this->_stats['passed'],
-            $this->_stats['fails']
-        );
-
-        if ($this->_stats['fails'] > 0) {
-            $output->writeln("<error>{$info}</error>");
-        } else {
-            $output->writeln("<bg=green>{$info}</bg=green>");
-        }
+        $this->printTotalStats($output);
     }
 
     private function runTest(TestCase $test)
@@ -107,5 +93,24 @@ class Run extends Command
         }
 
         $output->writeln('');
+    }
+
+    private function printTotalStats(OutputInterface $output)
+    {
+        $output->writeln('Total:');
+
+        $info = sprintf(
+            'Tests: %d, Assertions: %d, Passed: %d, Failures: %d',
+            $this->_stats['methods'],
+            $this->_stats['asserts'],
+            $this->_stats['passed'],
+            $this->_stats['fails']
+        );
+
+        if ($this->_stats['fails'] > 0) {
+            $output->writeln("<error>{$info}</error>");
+        } else {
+            $output->writeln("<bg=green>{$info}</bg=green>");
+        }
     }
 }
